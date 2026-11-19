@@ -139,3 +139,68 @@ JavaScript Number - подвійна точність. Дуже погано о�
 `x` та `old` — поточний і попередній вектори. `SolverResult` зберігає
 результат методу й історію кадрів; `Application` керує інтерфейсом, а `Chart`
 малює графіки.
+
+## Моделювання взаємодії: UML
+
+Діаграма класів показує залежності інтерфейсного контролера від обчислювального
+модуля, результату розв'язання та Canvas-графіків.
+
+```mermaid
+classDiagram
+    class Application {
+      +state
+      +system
+      +runs
+      +recalculate()
+      +renderTables()
+      +drawFrame()
+      +seek(frame)
+    }
+    class SlarMath {
+      +buildSystem(n, d)
+      +gauss(A, b)
+      +iterative(A, b, method)
+      +dominance(A)
+      +parseSystem(text)
+    }
+    class SolverResult {
+      +x
+      +iterations
+      +residuals
+      +frames
+      +converged
+      +reason
+    }
+    class Chart {
+      +canvas
+      +draw(series, options)
+      +bounds
+    }
+    Application --> SlarMath : викликає методи
+    SlarMath ..> SolverResult : створює
+    Application --> Chart : оновлює графіки
+```
+
+Послідовність показує перерахунок після зміни параметрів та відтворення
+збережених кадрів.
+
+```mermaid
+sequenceDiagram
+    actor User as Користувач
+    participant UI as index.html
+    participant App as Application
+    participant Math as SlarMath
+    participant Chart as Chart
+    User->>UI: змінює n, d або метод
+    UI->>App: подія керування
+    App->>Math: побудувати систему та розв'язати
+    Math-->>App: SolverResult і кадри
+    App->>App: оновити таблиці та стан анімації
+    App->>Chart: перемалювати графіки
+    User->>UI: відтворити / крок / повзунок
+    UI->>App: seek(frame)
+    App->>Chart: показати поточний кадр
+```
+
+Растрові копії діаграм: [класи](docs/classes.png) і
+[послідовність](docs/sequence.png).
