@@ -1,0 +1,244 @@
+TAP version 13
+# Subtest: Автомасштаб містить min та max
+ok 1 - Автомасштаб містить min та max
+  ---
+  duration_ms: 0.8605
+  type: 'test'
+  ...
+# Subtest: Стала серія має ненульовий діапазон
+ok 2 - Стала серія має ненульовий діапазон
+  ---
+  duration_ms: 0.1529
+  type: 'test'
+  ...
+# Subtest: Логарифмічна шкала: нуль, NaN, Infinity
+ok 3 - Логарифмічна шкала: нуль, NaN, Infinity
+  ---
+  duration_ms: 0.1332
+  type: 'test'
+  ...
+# Subtest: Порожній графік має коректні межі
+ok 4 - Порожній графік має коректні межі
+  ---
+  duration_ms: 0.1424
+  type: 'test'
+  ...
+# Subtest: Довга історія не переповнює стек аргументів
+ok 5 - Довга історія не переповнює стек аргументів
+  ---
+  duration_ms: 23.2999
+  type: 'test'
+  ...
+# Subtest: gauss: n=5, d=1
+ok 6 - gauss: n=5, d=1
+  ---
+  duration_ms: 3.1042
+  type: 'test'
+  ...
+# Subtest: gauss: n=5, d=0.1
+ok 7 - gauss: n=5, d=0.1
+  ---
+  duration_ms: 0.2777
+  type: 'test'
+  ...
+# Subtest: gauss: n=10, d=1
+ok 8 - gauss: n=10, d=1
+  ---
+  duration_ms: 0.2946
+  type: 'test'
+  ...
+# Subtest: gauss: n=10, d=0.1
+ok 9 - gauss: n=10, d=0.1
+  ---
+  duration_ms: 0.2492
+  type: 'test'
+  ...
+# Subtest: gauss: n=20, d=1
+ok 10 - gauss: n=20, d=1
+  ---
+  duration_ms: 1.3478
+  type: 'test'
+  ...
+# Subtest: gauss: n=20, d=0.1
+ok 11 - gauss: n=20, d=0.1
+  ---
+  duration_ms: 0.3866
+  type: 'test'
+  ...
+# Subtest: jacobi: n=5, d=1
+ok 12 - jacobi: n=5, d=1
+  ---
+  duration_ms: 0.6723
+  type: 'test'
+  ...
+# Subtest: jacobi: n=5, d=0.1
+ok 13 - jacobi: n=5, d=0.1
+  ---
+  duration_ms: 1.9062
+  type: 'test'
+  ...
+# Subtest: jacobi: n=10, d=1
+ok 14 - jacobi: n=10, d=1
+  ---
+  duration_ms: 1.1064
+  type: 'test'
+  ...
+# Subtest: jacobi: n=10, d=0.1
+ok 15 - jacobi: n=10, d=0.1
+  ---
+  duration_ms: 3.3674
+  type: 'test'
+  ...
+# Subtest: jacobi: n=20, d=1
+ok 16 - jacobi: n=20, d=1
+  ---
+  duration_ms: 1.0785
+  type: 'test'
+  ...
+# Subtest: jacobi: n=20, d=0.1
+ok 17 - jacobi: n=20, d=0.1
+  ---
+  duration_ms: 5.634
+  type: 'test'
+  ...
+# Subtest: seidel: n=5, d=1
+ok 18 - seidel: n=5, d=1
+  ---
+  duration_ms: 0.1803
+  type: 'test'
+  ...
+# Subtest: seidel: n=5, d=0.1
+ok 19 - seidel: n=5, d=0.1
+  ---
+  duration_ms: 0.0943
+  type: 'test'
+  ...
+# Subtest: seidel: n=10, d=1
+ok 20 - seidel: n=10, d=1
+  ---
+  duration_ms: 0.2178
+  type: 'test'
+  ...
+# Subtest: seidel: n=10, d=0.1
+ok 21 - seidel: n=10, d=0.1
+  ---
+  duration_ms: 0.1525
+  type: 'test'
+  ...
+# Subtest: seidel: n=20, d=1
+ok 22 - seidel: n=20, d=1
+  ---
+  duration_ms: 0.2094
+  type: 'test'
+  ...
+# Subtest: seidel: n=20, d=0.1
+ok 23 - seidel: n=20, d=0.1
+  ---
+  duration_ms: 0.2432
+  type: 'test'
+  ...
+# Subtest: Формули варіанта та індекси від 1
+ok 24 - Формули варіанта та індекси від 1
+  ---
+  duration_ms: 1.0448
+  type: 'test'
+  ...
+# Subtest: Нульовий головний елемент: без вибору помилка, з вибором розв’язок
+ok 25 - Нульовий головний елемент: без вибору помилка, з вибором розв’язок
+  ---
+  duration_ms: 0.4119
+  type: 'test'
+  ...
+# Subtest: Вибір головного елемента за модулем
+ok 26 - Вибір головного елемента за модулем
+  ---
+  duration_ms: 0.0957
+  type: 'test'
+  ...
+# Subtest: Вироджена матриця
+ok 27 - Вироджена матриця
+  ---
+  duration_ms: 0.1454
+  type: 'test'
+  ...
+# Subtest: Перший крок Якобі та Зейделя різний
+ok 28 - Перший крок Якобі та Зейделя різний
+  ---
+  duration_ms: 0.2265
+  type: 'test'
+  ...
+# Subtest: Перевірка строгої переваги
+ok 29 - Перевірка строгої переваги
+  ---
+  duration_ms: 0.3875
+  type: 'test'
+  ...
+# Subtest: Ліміт повертає converged=false
+ok 30 - Ліміт повертає converged=false
+  ---
+  duration_ms: 0.201
+  type: 'test'
+  ...
+# Subtest: Нульова діагональ у двох ітераційних методах
+ok 31 - Нульова діагональ у двох ітераційних методах
+  ---
+  duration_ms: 0.2433
+  type: 'test'
+  ...
+# Subtest: Форма, NaN та нечислові значення
+ok 32 - Форма, NaN та нечислові значення
+  ---
+  duration_ms: 0.2069
+  type: 'test'
+  ...
+# Subtest: Некоректні параметри
+ok 33 - Некоректні параметри
+  ---
+  duration_ms: 0.3205
+  type: 'test'
+  ...
+# Subtest: Нульова права частина: нуль ітерацій
+ok 34 - Нульова права частина: нуль ітерацій
+  ---
+  duration_ms: 0.1215
+  type: 'test'
+  ...
+# Subtest: Малий масштаб не дорівнює виродженості
+ok 35 - Малий масштаб не дорівнює виродженості
+  ---
+  duration_ms: 0.1456
+  type: 'test'
+  ...
+# Subtest: Розбіжність завершується контрольовано
+ok 36 - Розбіжність завершується контрольовано
+  ---
+  duration_ms: 0.7194
+  type: 'test'
+  ...
+# Subtest: JSON та розширена матриця
+ok 37 - JSON та розширена матриця
+  ---
+  duration_ms: 0.5983
+  type: 'test'
+  ...
+# Subtest: Порожній, пошкоджений ввід та exact
+ok 38 - Порожній, пошкоджений ввід та exact
+  ---
+  duration_ms: 0.2166
+  type: 'test'
+  ...
+# Subtest: Вхідні дані не змінюються, кадри є окремими копіями
+ok 39 - Вхідні дані не змінюються, кадри є окремими копіями
+  ---
+  duration_ms: 0.495
+  type: 'test'
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 124.2845

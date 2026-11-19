@@ -1,0 +1,9 @@
+{
+  "node": "v24.14.0",
+  "platform": "win32",
+  "arch": "x64",
+  "repeats": 7,
+  "warmup": 3,
+  "eps": 1e-10,
+  "maxIter": 20000
+}
