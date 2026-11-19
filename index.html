@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>СЛАР · Лабораторна № 2 · Жуков Михайло</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="js/math.js"></script><script defer src="js/chart.js"></script><script defer src="js/app.js"></script>
+</head>
+<body>
+<main>
+  <header><a class="brand" href="#"><span class="brand-icon">Σ</span> Чисельні методи <span class="muted">/ лабораторна № 2</span></a><span class="eyebrow">ВАРІАНТ <b>02</b></span></header>
+  <section class="hero"><div><p class="eyebrow">ПРЯМІ ТА ІТЕРАЦІЙНІ МЕТОДИ</p><h1>Системи лінійних<br><em>рівнянь</em></h1><p class="subtitle">Гаусс, Якобі та Зейдель. Точність, збіжність<br>і покроковий розв’язок однієї системи.</p></div><aside class="variant"><p class="eyebrow">ФОРМУЛА ВАРІАНТА 2</p><strong>aᵢⱼ = 1 / |i − j|</strong><p>aᵢᵢ = Σⱼ≠ᵢ |aᵢⱼ| + d<br>x*ᵢ = i² / n &nbsp; · &nbsp; b = Ax*</p><small>Жуков Михайло Володимирович</small></aside></section>
+  <form id="controls" class="panel controls">
+    <label>РОЗМІР n<select id="size"><option>5</option><option>10</option><option>20</option></select></label>
+    <label>ЗАПАС d<select id="margin"><option value="1">1</option><option value="0.1">0,1</option></select></label>
+    <label>МЕТОД АНІМАЦІЇ<select id="method"><option value="gauss">Гаусс</option><option value="jacobi">Якобі</option><option value="seidel">Зейдель</option></select></label>
+    <label>ТОЧНІСТЬ ε<input id="eps" type="number" value="1e-10" step="any" min="1e-15" max="1"></label>
+    <label>ЛІМІТ ІТЕРАЦІЙ<input id="limit" type="number" min="20000" max="100000" value="20000" step="1"></label>
+    <button type="submit" class="primary">Обчислити</button><button type="button" id="reset">↺ Варіант 2</button>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+  <details class="panel input-panel"><summary>Матриця та власні дані <span class="muted">/ введення або файл</span></summary><div class="input-content"><p>JSON з полями A, b та необов’язковим exact, або рядки розширеної матриці: <code>4 1 | 1</code>. Десятковий роздільник - крапка.</p><textarea id="input" rows="7" aria-label="Матриця системи" spellcheck="false"></textarea><div class="input-actions"><label class="file-button">Відкрити файл<input type="file" id="file" accept=".json,.txt"></label><button id="apply" class="primary">Застосувати дані</button><button id="save-system">Зберегти JSON</button></div></div></details>
+  <section class="charts-grid">
+    <article class="panel"><div class="panel-heading"><div><p class="eyebrow">01 / ЗБІЖНІСТЬ</p><h2>Нев’язка за ітераціями</h2></div><span class="badge">логарифмічна шкала</span></div><canvas id="convergence" aria-label="Графік збіжності Якобі та Зейделя"></canvas><div class="chart-note">r = ‖Ax − b‖₂ <span>Критерій: r ≤ ε</span></div></article>
+    <article class="panel"><div class="panel-heading"><div><p class="eyebrow">02 / РОЗВ’ЯЗОК</p><h2>Компоненти вектора</h2></div><span class="badge" id="size-badge">5 невідомих</span></div><canvas id="solution" aria-label="Графік компонентів точного та числових розв’язків"></canvas><div class="chart-note">xᵢ від номера компоненти i <span>Автомасштаб осей</span></div></article>
+  </section>
+  <section class="panel animation"><div class="panel-heading"><div><p class="eyebrow">03 / ПОКРОКОВЕ ОБЧИСЛЕННЯ</p><h2 id="animation-title">Прямий хід Гаусса</h2></div><div class="player"><button id="play" class="primary">▶ Відтворити</button><button id="step">Крок →</button><button id="start" aria-label="На початок">↺</button></div></div>
+    <div class="timeline"><input type="range" id="progress" min="0" max="1" value="0" aria-label="Кадр анімації"><output id="frame-number">0 / 0</output></div><p id="frame-label"></p><div id="matrix-wrap" class="matrix-scroll"></div><canvas id="iteration" aria-label="Поточне ітераційне наближення" hidden></canvas>
+  </section>
+  <section class="panel"><div class="panel-heading"><div><p class="eyebrow">04 / АНАЛІЗ</p><h2>Результати поточної системи</h2></div><button id="export">↓ Зберегти CSV</button></div><div class="table-scroll"><table><thead><tr><th>Метод</th><th>Ітерації</th><th>Нев’язка L2</th><th>Похибка L∞</th><th>Час, мс</th><th>Стан</th></tr></thead><tbody id="metrics"></tbody></table></div><p class="footnote">Час у браузері: один запуск без запису кадрів. Для порівняльного звіту використано медіану 7 запусків Node.js. Похибка доступна, якщо задано точний вектор.</p></section>
+  <details class="panel"><summary>Компоненти розв’язку та права частина</summary><div class="table-scroll"><table><thead><tr><th>i</th><th>bᵢ</th><th>x*ᵢ</th><th>Гаусс</th><th>Якобі</th><th>Зейдель</th></tr></thead><tbody id="components"></tbody></table></div></details>
+  <section class="overview"><div class="section-heading"><p class="eyebrow">05 / ПОРІВНЯННЯ РОЗМІРІВ</p><h2>Один варіант. Три розміри системи.</h2><p>Початкові дані варіанта № 2, d = 1, ε = 10⁻¹⁰. Власний ввід не змінює ці шість графіків.</p></div><div id="gallery" class="charts-grid"></div></section>
+  <footer><span>Лабораторна робота № 2 · 2026</span><span>JavaScript · HTML/CSS · Canvas</span></footer>
+</main>
+</body></html>
